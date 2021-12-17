@@ -5,8 +5,10 @@ class CreatePlannings < ActiveRecord::Migration[5.2]
       t.references :salle, foreign_key: true
       t.references :formation, foreign_key: true
       t.references :material, foreign_key: true
-      t.datetime :date_begin, null:false
-      t.datetime :date_end, null:false
+      t.datetime :date_begin, null:false, default: "01/01/2021 00:00"
+      t.datetime :date_end, null:false, default: "01/01/2021 00:00"
+
+      t.timestamps
     end
   end
 end
