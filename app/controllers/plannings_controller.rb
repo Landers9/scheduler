@@ -20,6 +20,11 @@ class PlanningsController < ApplicationController
     end
   end
 
+  def destroy
+    @task.destroy
+    redirect_to "/"
+  end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
