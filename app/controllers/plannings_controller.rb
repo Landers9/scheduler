@@ -1,6 +1,6 @@
 class PlanningsController < ApplicationController
 
-  before_action :set_planning, only: %i[ show edit update destroy]
+  # before_action :set_planning, only: %i[ show edit update destroy]
 
   def index
   end
@@ -21,8 +21,23 @@ class PlanningsController < ApplicationController
   end
 
   def destroy
-    @task.destroy
+    planning = Planning.find_by(id: params[:id]).destroy
     redirect_to "/"
+  end
+
+  def edit
+    @planning = Planning.find(params[:id])
+  end
+
+  def update
+    @planning = Planning.find(params[:id])
+    if @planning.update(planning_params)
+      redirect_to "/"
+
+    else
+      render :edit
+    end
+
   end
 
 

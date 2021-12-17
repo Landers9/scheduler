@@ -82,13 +82,17 @@
             <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
               <div class="chart">
                 <div class="d-flex mx-4">
-                  <% if current_user.id == planning.user.id %>
-                      <span class="material-icons text-white">delete</span>
-                      <span class="material-icons text-white mx-3">edit</span>
+                  <a class="mx-4">
+                    <span class="material-icons text-white">receipt</span>
+                  </a>
+                  <% if Planning.where(user_id: current_user).count != 0 %>
+                    <% if current_user.id == planning.user.id %>
+                      <a href="<%= delete_planning_path(id: planning.id) %>" data-method="delete" class="mx-4"><span class="material-icons text-white">delete</span></a>
+
+                      <a href="<%= edit_planning_path(id: planning.id) %>" class="mx-4"><span class="material-icons text-white">edit</span></a>
+                    <% end %>
                   <% else %>
-                    <a>
-                      <span class="material-icons text-white">receipt</span>
-                    </a>
+
                   <% end %>
                 </div>
               </div>
